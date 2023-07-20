@@ -65,6 +65,7 @@ const DiaryWriter = () => {
         setWeather(undefined)
     }
 
+    const color = isValid ? "emerald" : "gray"
     return (
         <div className="flex flex-col gap-4 p-4 rounded-lg bg-white p-2.5 border border-gray-100 w-full h-2/3 min-h-[20rem]">
                 <input type="text" className="p-2 my-3 w-full text-gray-900 rounded-md ring-gray-100 focus:outline-none focus:ring-1 text-2xl" id="title" value={title} placeholder="제목을 적어보세요" onChange={(event)=> {
@@ -97,7 +98,7 @@ const DiaryWriter = () => {
                 <textarea id="content" rows={4} value={content} onChange={(event)=>{
                     setContent(event.target.value)
                 }} className="p-1.5 text-m text-gray-900 rounded-lg ring-gray-300 focus:outline-none focus:ring-1 resize-none" placeholder="오늘 당신의 하루는 어땠나요?"></textarea>
-                <button className="p-1 border border-gray-100 rounded-lg bg-gray-100 text-gray-500 hover:border-gray-700 active:translate-y-[1px]" onClick={saveDiary} disabled= {!isValid}>{isValid ? '일기를 저장해보아요' :'일기를 더 자세히 적어볼까요?'}</button>                
+                <button className={`p-1 border border-gray-100 rounded-lg bg-${color}-100 text-${color}-500 hover:border-gray-700 active:translate-y-[1px]`} onClick={saveDiary} disabled= {!isValid}>{isValid ? '일기를 저장해보아요' :'일기를 더 자세히 적어볼까요?'}</button>                
                 
             </div>
     )
