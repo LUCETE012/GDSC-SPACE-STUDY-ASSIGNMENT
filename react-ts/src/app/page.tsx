@@ -1,5 +1,5 @@
 import { Link } from "../components/Link";
-import { useState, useEffect, createContext, useContext } from "react";
+import { useState, useEffect } from "react";
 import { Diary } from '../interface/diary';
 import { useDiaryValue, useDiaryUpdate } from "../provider/Diary";
 
@@ -140,7 +140,6 @@ const DiaryViewer = ({ diary }: {diary: Diary[]}) => {
 
 
 export default function DiaryHomePage() {
-    // const diary = useDiaryValue()
     const diary: Diary[] = [];
     for (let i = 0; i < window.localStorage.length; i++)
     {
@@ -165,7 +164,6 @@ export default function DiaryHomePage() {
                 <div className="w-full flex flex-col items-start gap-4 p-4 justify-between rounded-lg bg-white border border-gray-100 h-2/3 min-h-[20rem]">
                     <h1 className="text-xl text-emerald-600 mt-5">기록된 일기</h1>
                     <div className="flex flex-col overflow-y-auto gap-2 w-full max-h-96">
-                        {/* <DiaryViewer diary={useDiaryValue()} />   */}
                         <DiaryViewer diary={useDiaryValue()} /> 
                     </div>
                     <Link to="/emotions" className="flex w-full py-3 flex items-center justify-center rounded-lg border border-emerald-200 text-emerald-600 bg-emerald-200 hover:border-emerald-600 active:translate-y-[1px]"> 감정 모아보기 </Link>
