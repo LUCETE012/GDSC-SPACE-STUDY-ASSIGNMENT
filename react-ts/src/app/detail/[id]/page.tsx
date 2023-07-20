@@ -3,6 +3,7 @@ import { Diary } from '../../../interface/diary'
 import { useDiaryUpdate, useDiaryValue } from '../../../provider/Diary'
 import { Link } from '../../../components/Link'
 import { DIARY_STORAGE_KEY } from '../../page'
+import { useEffect } from 'react'
 
 type DiaryDetailPageParams = {
     id: string
@@ -21,8 +22,20 @@ export default function DiaryDetailPage() {
         {dateStyle: 'full'}
     ).format(parsedDate)
     
-    const nowId = id
     const setDiary = useDiaryUpdate()
+    const updateId = id
+
+    useEffect(()=>{
+        setDiary((prev)=> {
+            const targetDiary = prev.find(({id})=> id === updateId)
+            if (!targetDiary) return prev
+            const updatedDiary = prev.map((diary) => (diary.id === updateId ? { ...diary, views: diary.views + 1 } : diary))
+            window.localStorage.setItem(DIARY_STORAGE_KEY, JSON.stringify(updatedDiary))
+            return updatedDiary
+        })
+    }, [])
+
+    const nowId = id
     const navigate = useNavigate()
     const removeDiary = () => { 
         setDiary((prev) => {

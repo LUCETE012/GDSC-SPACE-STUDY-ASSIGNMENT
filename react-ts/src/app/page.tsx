@@ -45,12 +45,13 @@ const DiaryWriter = () => {
             date: new Date(),
             emotion: emotion!,
             weather: weather!,
-            views: 1,
         }
 
         
         setDairy((prev) => {
-            const updatedDiary = [...prev, newDiary]
+            const initialView = 1
+            const withView = {...newDiary, views: initialView}
+            const updatedDiary = [...prev, withView]
             window.localStorage.setItem(DIARY_STORAGE_KEY, JSON.stringify(updatedDiary))
             return updatedDiary
         })
